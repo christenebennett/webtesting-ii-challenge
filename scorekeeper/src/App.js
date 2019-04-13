@@ -15,26 +15,43 @@ class App extends Component {
   }
 
   addStrike = () => {
-    this.setState(prevState => {
-      console.log(this.state.strikes)
-      return {strikes: prevState.strikes + 1}
-    })
+    if (this.state.strikes < 3) {
+      this.setState(prevState => {
+        return {strikes: prevState.strikes + 1}
+      })
+    } else {
+      this.setState({
+        strikes: 0,
+        balls: 0,
+        fouls: 0,
+        hits: 0
+      })
+    }
   }
+
   addFoul = () => {
     this.setState(prevState => {
-      console.log(this.state.fouls)
       return {fouls: prevState.fouls + 1}
     })
   }
+
   addBall = () => {
-    this.setState(prevState => {
-      console.log(this.state.balls)
-      return {balls: prevState.balls + 1}
-    })
+    if (this.state.balls < 4) {
+      this.setState(prevState => {
+        return {balls: prevState.balls + 1}
+      })
+    } else {
+      this.setState({
+        strikes: 0,
+        balls: 0,
+        fouls: 0,
+        hits: 0
+      })
+    }
   }
+
   addHit = () => {
     this.setState(prevState => {
-      console.log(this.state.hits)
       return {hits: prevState.hits + 1}
     })
   }
