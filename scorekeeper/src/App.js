@@ -30,9 +30,14 @@ class App extends Component {
   }
 
   addFoul = () => {
-    this.setState(prevState => {
-      return {fouls: prevState.fouls + 1}
-    })
+    if (this.state.strikes < 2){
+      this.setState(prevState => {
+        return {
+          fouls: prevState.fouls + 1,
+          strikes: prevState.strikes + 1,
+        }
+      })
+    }
   }
 
   addBall = () => {
@@ -51,8 +56,11 @@ class App extends Component {
   }
 
   addHit = () => {
-    this.setState(prevState => {
-      return {hits: prevState.hits + 1}
+    this.setState({
+      strikes: 0,
+      balls: 0,
+      fouls: 0,
+      hits: 0
     })
   }
 
