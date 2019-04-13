@@ -1,25 +1,54 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Dashboard from './dashboard/Dashboard'
+import Display from './display/Display'
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      strikes: 0,
+      balls: 0,
+      fouls: 0,
+      hits: 0
+    }
+  }
+
+  addStrike = () => {
+    this.setState(prevState => {
+      console.log(this.state.strikes)
+      return {strikes: prevState.strikes + 1}
+    })
+  }
+  addFoul = () => {
+    this.setState(prevState => {
+      console.log(this.state.fouls)
+      return {fouls: prevState.fouls + 1}
+    })
+  }
+  addBall = () => {
+    this.setState(prevState => {
+      console.log(this.state.balls)
+      return {balls: prevState.balls + 1}
+    })
+  }
+  addHit = () => {
+    this.setState(prevState => {
+      console.log(this.state.hits)
+      return {hits: prevState.hits + 1}
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Dashboard 
+          {...this.state}
+          addStrike={this.addStrike} 
+          addFoul={this.addFoul} 
+          addBall={this.addBall} 
+          addHit={this.addHit} />
+        <Display {...this.state}/> 
       </div>
     );
   }
